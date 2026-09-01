@@ -1,12 +1,14 @@
+import { Link } from "react-router";
+
 function Navbar({ cartCount }) {
   return (
     <nav className="navbar">
-      <button>Home</button>
-      <button>Shop</button>
-      <button className="cart-button">
-        <span className="cart-text">Cart-text</span>
-        <span className="cart-count">{cartCount}</span>
-      </button>
+      <Link to="/">Home</Link>
+      <Link to="/shop">Shop</Link>
+      <Link to="/cart">
+        <span>Cart</span>
+        <span>{cartCount}</span>
+      </Link>
     </nav>
   );
 }
