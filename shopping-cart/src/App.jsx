@@ -1,4 +1,7 @@
 import Navbar from "./components/navbar";
+import Home from "./components/homepage";
+import Shop from "./components/shop";
+import Cart from "./components/copy";
 
 function App() {
   return (
