@@ -1,0 +1,82 @@
+main {
+  padding: 20px;
+}
+
+main h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  height: 180px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.product-image p {
+  color: #777;
+}
+
+.product-info {
+  margin: 20px 0;
+}
+
+.product-info h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.product-info p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.quantity-selector button {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.quantity-selector button:hover {
+  background-color: #e5e5e5;
+}
+
+.quantity-selector input {
+  width: 45px;
+  height: 31px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+}
