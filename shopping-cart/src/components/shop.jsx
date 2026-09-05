@@ -1,112 +1,44 @@
+import { useEffect, useState } from "react";
 import "../styles/shop.css";
 
 function Shop() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+
+      // get the first 6 products from the response
+      .then((data) => {
+        setProducts(data.slice(0, 6));
+      })
+      .catch((error) => {
+        console.error("Error fetching products", error);
+      });
+  }, []);
+
   return (
     <main>
       <h1>Shop Page</h1>
-
       <div className="shop-container">
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <div className="product-image">
+              <img src={product.image} alt={product.title} />
+            </div>
 
-          <div className="product-info">
-            <h2>Product One</h2>
-            <p>$20.00</p>
-          </div>
+            <div className="product-info">
+              <h2>{product.title}</h2>
+              <p>${product.price.toFixed(2)}</p>
+            </div>
 
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
+            <div className="quantity-selector">
+              <button>-</button>
+              <input type="number" value="1" readOnly />
+              <button>+</button>
+            </div>
           </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
-
-          <div className="product-info">
-            <h2>Product Two</h2>
-            <p>$25.00</p>
-          </div>
-
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
-
-          <div className="product-info">
-            <h2>Product Three</h2>
-            <p>$30.00</p>
-          </div>
-
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
-
-          <div className="product-info">
-            <h2>Product Four</h2>
-            <p>$35.00</p>
-          </div>
-
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
-
-          <div className="product-info">
-            <h2>Product Five</h2>
-            <p>$40.00</p>
-          </div>
-
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <p>Product Image</p>
-          </div>
-
-          <div className="product-info">
-            <h2>Product Six</h2>
-            <p>$45.00</p>
-          </div>
-
-          <div className="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" readOnly />
-            <button>+</button>
-          </div>
-        </div>
+        ))}
       </div>
     </main>
   );
