@@ -37,6 +37,11 @@ function Shop() {
               <input type="number" value="1" readOnly />
               <button>+</button>
             </div>
+
+            <div className="cart-buttons">
+              <button>Add to Cart</button>
+              <button>Remove from Cart</button>
+            </div>
           </div>
         ))}
       </div>
