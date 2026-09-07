@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/shop.css";
 
-// MODIFY INITIAL PROD NO TO 0 AFTER!!!!!!
-
 function Shop() {
   const [products, setProducts] = useState([]);
 
@@ -21,8 +19,8 @@ function Shop() {
         const initialQuantities = {};
 
         data.slice(0, 6).forEach((product) => {
-          // set initial quantity to 1 using prod id as key
-          initialQuantities[product.id] = 1;
+          // set initial quantity using prod id as key
+          initialQuantities[product.id] = "";
         });
 
         setQuantities(initialQuantities);
@@ -43,6 +41,7 @@ function Shop() {
   return (
     <main>
       <h1>Shop Page</h1>
+
       <div className="shop-container">
         {products.map((product) => (
           <div className="product-card" key={product.id}>
@@ -56,17 +55,52 @@ function Shop() {
             </div>
 
             <div className="quantity-selector">
-              <button>-</button>
+              <button
+                onClick={() =>
+                  handleQuantityChange(
+                    product.id,
+                    Math.max(0, Number(quantities[product.id]) - 1),
+                  )
+                }
+              >
+                -
+              </button>
+
               <input
                 type="number"
-                min="1"
-                // show this product's stored quantity, otherwise show 1
-                value={quantities[product.id] || 1}
-                onChange={(event) =>
-                  handleQuantityChange(product.id, event.target.value)
+                min="0"
+                value={
+                  quantities[product.id] === "" ? "" : quantities[product.id]
                 }
+                onChange={(event) => {
+                  const value = event.target.value;
+
+                  if (value === "") {
+                    handleQuantityChange(product.id, "");
+                  } else {
+                    handleQuantityChange(
+                      product.id,
+                      Math.max(0, Number(value)),
+                    );
+                  }
+                }}
+                onBlur={() => {
+                  if (quantities[product.id] === "") {
+                    handleQuantityChange(product.id, 0);
+                  }
+                }}
               />
-              <button>+</button>
+
+              <button
+                onClick={() =>
+                  handleQuantityChange(
+                    product.id,
+                    Number(quantities[product.id]) + 1,
+                  )
+                }
+              >
+                +
+              </button>
             </div>
 
             <div className="cart-buttons">
