@@ -1,8 +1,8 @@
-function Cart() {
+function Cart({ cartMessage }) {
   return (
     <main>
       <h1>Cart Page</h1>
-      <p>Here is your checkout</p>
+      <p>{cartMessage}</p>
     </main>
   );
 }
