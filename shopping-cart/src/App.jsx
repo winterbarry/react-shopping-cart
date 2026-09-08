@@ -8,6 +8,7 @@ import Cart from "./components/cart";
 
 function App() {
   const [cartMessage, setCartMessage] = useState("Here is your checkout");
+
   return (
     <BrowserRouter>
       <Navbar cartCount={0} />
@@ -17,9 +18,14 @@ function App() {
 
         <Route
           path="/shop"
+          // set cart message function
           element={<Shop setCartMessage={setCartMessage} />}
         />
-        <Route path="/cart" element={<Cart cartMessage={cartMessage} />} />
+        <Route
+          path="/cart"
+          // to display cart message function
+          element={<Cart cartMessage={cartMessage} />}
+        />
       </Routes>
     </BrowserRouter>
   );
