@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/shop.css";
 
-function Shop({ setCartMessage }) {
+function Shop({ setCartItems }) {
   const [products, setProducts] = useState([]);
 
   // store the quantity for each product
@@ -36,6 +36,22 @@ function Shop({ setCartMessage }) {
       ...previousQuantities,
       [productId]: value,
     }));
+  };
+
+  // add a product to cart
+  const addToCart = (product) => {
+    const amount = Number(quantities[product.id]);
+
+    const newItem = {
+      id: product.id,
+      name: product.title,
+      amount: amount,
+      price: product.price,
+    };
+
+    console.log("Item added to cart:", newItem);
+
+    setCartItems((previousItems) => [...previousItems, newItem]);
   };
 
   return (
@@ -104,9 +120,7 @@ function Shop({ setCartMessage }) {
             </div>
 
             <div className="cart-buttons">
-              <button onClick={() => setCartMessage("Adding item...")}>
-                Add to Cart
-              </button>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
               <button onClick={() => setCartMessage("Removing item...")}>
                 Remove from Cart
               </button>

@@ -7,7 +7,7 @@ import Shop from "./components/shop";
 import Cart from "./components/cart";
 
 function App() {
-  const [cartMessage, setCartMessage] = useState("Here is your checkout");
+  const [cartItems, setCartItems] = useState([]);
 
   return (
     <BrowserRouter>
@@ -16,16 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route
-          path="/shop"
-          // set cart message function
-          element={<Shop setCartMessage={setCartMessage} />}
-        />
-        <Route
-          path="/cart"
-          // to display cart message function
-          element={<Cart cartMessage={cartMessage} />}
-        />
+        <Route path="/shop" element={<Shop setCartItems={setCartItems} />} />
+
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
       </Routes>
     </BrowserRouter>
   );
