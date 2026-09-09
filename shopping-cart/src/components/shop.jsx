@@ -51,7 +51,25 @@ function Shop({ setCartItems }) {
 
     console.log("Item added to cart:", newItem);
 
-    setCartItems((previousItems) => [...previousItems, newItem]);
+    setCartItems((previousItems) => {
+      // check if product already exists in cart
+      const existingItem = previousItems.find((item) => item.id === product.id);
+
+      // increase the amount if the item already exists, otherwise return the same item
+      if (existingItem) {
+        return previousItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                amount: item.amount + amount,
+              }
+            : item,
+        );
+      }
+
+      // if item does not exist, add it as a new item
+      return [...previousItems, newItem];
+    });
   };
 
   return (

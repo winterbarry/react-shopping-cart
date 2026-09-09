@@ -18,7 +18,7 @@ function Cart({ cartItems }) {
                 </div>
 
                 <div className="cart-item-price">
-                  Price: ${cartItem.price.toFixed(2)}
+                  Price: ${(cartItem.amount * cartItem.price).toFixed(2)}
                 </div>
               </div>
             ))
