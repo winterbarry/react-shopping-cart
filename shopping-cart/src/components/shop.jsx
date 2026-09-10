@@ -72,6 +72,21 @@ function Shop({ setCartItems }) {
     });
   };
 
+  // remove a product from the cart
+  const removeFromCart = (productId) => {
+    console.log("Remove button clicked:", productId);
+    setCartItems((previousItems) => {
+      // create a new array without the item matching the product id
+      const updatedItems = previousItems.filter(
+        (item) => item.id !== productId,
+      );
+
+      console.log("Updated cart items:", updatedItems);
+
+      return updatedItems;
+    });
+  };
+
   return (
     <main>
       <h1>Shop Page</h1>
@@ -139,7 +154,7 @@ function Shop({ setCartItems }) {
 
             <div className="cart-buttons">
               <button onClick={() => addToCart(product)}>Add to Cart</button>
-              <button onClick={() => setCartMessage("Removing item...")}>
+              <button onClick={() => removeFromCart(product.id)}>
                 Remove from Cart
               </button>
             </div>
