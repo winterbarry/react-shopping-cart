@@ -1,4 +1,9 @@
-function Cart({ cartItems }) {
+function Cart({ cartItems, setCartItems }) {
+  function removeHandler(productId) {
+    setCartItems((previousItems) =>
+      previousItems.filter((item) => item.id !== productId),
+    );
+  }
   return (
     <main className="cart-page">
       <h1 className="cart-header">Cart Page</h1>
@@ -22,7 +27,9 @@ function Cart({ cartItems }) {
                 {/* right side controls */}
                 <div className="cart-item-controls">
                   <div className="cart-item-remove">
-                    <button>Remove</button>
+                    <button onClick={() => removeHandler(cartItem.id)}>
+                      Remove
+                    </button>
                   </div>
 
                   <div className="cart-item-quantity">
