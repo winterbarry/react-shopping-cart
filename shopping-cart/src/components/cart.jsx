@@ -6,19 +6,30 @@ function Cart({ cartItems }) {
       <div className="cart-container">
         <div className="cart-items">
           {cartItems.length === 0 ? (
-            <div className="cart-placeholder"> Your cart is empty</div>
+            <div className="cart-placeholder">Your cart is empty</div>
           ) : (
             cartItems.map((cartItem) => (
-              // create a div for each cart item
               <div className="cart-item" key={cartItem.id}>
-                <div className="cart-item-name">{cartItem.name}</div>
+                {/* left side information */}
+                <div className="cart-item-info">
+                  <div className="cart-item-name">{cartItem.name}</div>
 
-                <div className="cart-item-amount">
-                  Amount: {cartItem.amount}
+                  <div className="cart-item-price">
+                    Price: ${(cartItem.amount * cartItem.price).toFixed(2)}
+                  </div>
                 </div>
 
-                <div className="cart-item-price">
-                  Price: ${(cartItem.amount * cartItem.price).toFixed(2)}
+                {/* right side controls */}
+                <div className="cart-item-controls">
+                  <div className="cart-item-remove">
+                    <button>Remove</button>
+                  </div>
+
+                  <div className="cart-item-quantity">
+                    <button>-</button>
+                    <span>{cartItem.amount}</span>
+                    <button>+</button>
+                  </div>
                 </div>
               </div>
             ))
