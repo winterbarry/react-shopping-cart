@@ -21,6 +21,11 @@ function Cart({ cartItems, setCartItems }) {
     );
   }
 
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.amount * item.price,
+    0,
+  );
+
   return (
     <main className="cart-page">
       <h1 className="cart-header">Cart Page</h1>
@@ -64,7 +69,7 @@ function Cart({ cartItems, setCartItems }) {
           )}
         </div>
 
-        <div className="cart-total">Total price: $0.00</div>
+        <div className="cart-total">Total price: ${totalPrice.toFixed(2)}</div>
       </div>
     </main>
   );
