@@ -4,6 +4,23 @@ function Cart({ cartItems, setCartItems }) {
       previousItems.filter((item) => item.id !== productId),
     );
   }
+
+  function incrementHandler(productId) {
+    setCartItems((previousItems) =>
+      previousItems.map((item) =>
+        item.id === productId ? { ...item, amount: item.amount + 1 } : item,
+      ),
+    );
+  }
+
+  function decrementHandler(productId) {
+    setCartItems((previousItems) =>
+      previousItems.map((item) =>
+        item.id === productId ? { ...item, amount: item.amount - 1 } : item,
+      ),
+    );
+  }
+
   return (
     <main className="cart-page">
       <h1 className="cart-header">Cart Page</h1>
@@ -33,9 +50,13 @@ function Cart({ cartItems, setCartItems }) {
                   </div>
 
                   <div className="cart-item-quantity">
-                    <button>-</button>
+                    <button onClick={() => decrementHandler(cartItem.id)}>
+                      -
+                    </button>
                     <span>{cartItem.amount}</span>
-                    <button>+</button>
+                    <button onClick={() => incrementHandler(cartItem.id)}>
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
