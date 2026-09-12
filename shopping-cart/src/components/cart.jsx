@@ -1,3 +1,5 @@
+import "../styles/cart.css";
+
 function Cart({ cartItems, setCartItems }) {
   function removeHandler(productId) {
     setCartItems((previousItems) =>
