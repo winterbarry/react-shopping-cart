@@ -9,9 +9,11 @@ import Cart from "./components/cart";
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
+  const cartCount = cartItems.reduce((total, item) => total + item.amount, 0);
+
   return (
     <BrowserRouter>
-      <Navbar cartCount={0} />
+      <Navbar cartCount={cartCount} />
 
       <Routes>
         <Route path="/" element={<Home />} />
